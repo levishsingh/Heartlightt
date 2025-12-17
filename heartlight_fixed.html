@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Heartlight – Entrance</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" />
+  <style>
+    body {
+      background: linear-gradient(to bottom right, #ffc0cb, #ff69b4);
+      color: white;
+      text-align: center;
+      font-family: 'Poppins', sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    h1 {
+      font-size: 2rem;
+      text-shadow: 0 0 15px #fff;
+      animation: fadeIn 2s ease-in-out;
+    }
+    #enterBtn {
+      margin-top: 2rem;
+      background: #ff1493;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      padding: 0.8rem 2rem;
+      font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 0 15px #ff69b4;
+      transition: all 0.4s ease;
+    }
+    #enterBtn:hover {
+      background: #ff69b4;
+      box-shadow: 0 0 30px #ff69b4;
+    }
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: #ff1493;
+      transform: rotate(45deg);
+      opacity: 0.6;
+      animation: float 10s infinite ease-in-out;
+    }
+    .heart::before, .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: #ff1493;
+      border-radius: 50%;
+    }
+    .heart::before { top: -10px; left: 0; }
+    .heart::after { left: -10px; top: 0; }
+    @keyframes float {
+      0% { transform: translateY(0) rotate(45deg); opacity: 1; }
+      100% { transform: translateY(-100vh) rotate(45deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>
+    Welcome, Miss Butkii Don,<br>
+    You didn’t just enter a space,<br>
+    you entered a heart that’s been waiting only for you. 💖
+  </h1>
+
+  <button id="enterBtn" type="button">Enter</button>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  // Floating hearts (first page)
+  for (let j = 0; j < 15; j++) {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = 5 + Math.random() * 7 + 's';
+    document.body.appendChild(heart);
+  }
+
+  document.getElementById('enterBtn').addEventListener('click', function () {
+
+    document.body.style.animation = 'fadeOut 1.5s forwards';
+
+    setTimeout(() => {
+
+      document.body.innerHTML = `
+        <style>
+          body {
+            background: linear-gradient(to bottom right, #ffb6c1, #ff69b4, #c71585);
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            overflow-x: hidden;
+            padding: 2rem;
+          }
+          .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #ff1493;
+            transform: rotate(45deg);
+            animation: float 10s infinite ease-in-out;
+            opacity: 0.6;
+          }
+          .heart::before, .heart::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #ff1493;
+            border-radius: 50%;
+          }
+          .heart::before { top: -10px; left: 0; }
+          .heart::after { left: -10px; top: 0; }
+          @keyframes float {
+            0% { transform: translateY(0) rotate(45deg); opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(45deg); opacity: 0; }
+          }
+          p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            text-shadow: 0 0 15px rgba(255,255,255,0.9);
+            opacity: 0;
+            animation: fadeInText 2s forwards;
+          }
+          @keyframes fadeInText {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+        </style>
+        <main id="loveText"></main>
+      `;
+
+      // Floating hearts (second page)
+      for (let j = 0; j < 25; j++) {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = 5 + Math.random() * 7 + 's';
+        document.body.appendChild(heart);
+      }
+
+      const lines = [
+        "Mujhe nhi pta kaise start karun, kiuki me khud hi thoda sa confused aur messy hun...",
+        "me hr choti si baat ko overthink karta hun, aise-aise scenes bana leta hun jo asal mein hote hi nhi...",
+        "aur phr bina wajah khud ko hurt karta hun...",
+        "kabhi chup ho jata hun, kabhi late react karta hun, aur kabhi react hi nhi karta…",
+        "aur mujhe pta h isse tumhe lagta h me careless hun...",
+        "Pr sach ye h....me tumhare liye careless nahi hun, mujhe bss apni feelings express nhi krni aati....",
+        "Aur hn, me selfish bhi hun…",
+        "par dil se, poori tarah, sirf tumse pyaar karne wala. ❤️",
+        "I love you 🫶"
+      ];
+
+      const loveText = document.getElementById("loveText");
+      let i = 0;
+
+      function showNextLine() {
+        if (i < lines.length) {
+          const p = document.createElement("p");
+          p.textContent = lines[i];
+          loveText.appendChild(p);
+          i++;
+          setTimeout(showNextLine, 2500);
+        }
+      }
+
+      showNextLine();
+
+    }, 1500);
+
+  });
+
+});
+</script>
+
+</body>
+</html>
